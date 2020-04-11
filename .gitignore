@@ -22,3 +22,10 @@
 /config/master.key
 
 .idea/
+
+# DotEnv files
+.env
+.env.development
+.env.development.local
+
+
