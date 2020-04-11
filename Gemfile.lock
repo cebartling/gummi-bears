@@ -56,6 +56,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
+    ast (2.4.0)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -89,6 +90,8 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    parser (2.7.1.0)
+      ast (~> 2.4.0)
     pg (1.2.3)
     puma (4.3.3)
       nio4r (~> 2.0)
@@ -129,6 +132,8 @@ GEM
       ffi (~> 1.0)
     rollbar (2.24.0)
     ruby_dep (1.5.0)
+    scout_apm (2.6.7)
+      parser
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -162,6 +167,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.0.2, >= 6.0.2.2)
   rollbar
+  scout_apm
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
