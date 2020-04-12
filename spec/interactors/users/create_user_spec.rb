@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Users::CreateUser do
-  let(:first_name) {'Christopher'}
-  let(:last_name) {'Bartling'}
-  let(:username) {'xbartlingx'}
+  let(:first_name) { 'Christopher' }
+  let(:last_name) { 'Bartling' }
+  let(:username) { 'xbartlingx' }
 
   subject(:context) { Users::CreateUser.call(
     first_name: first_name,
@@ -29,9 +29,9 @@ RSpec.describe Users::CreateUser do
     end
 
     context "when given invalid parameters" do
-      let(:first_name) {nil}
-      let(:last_name) {nil}
-      let(:username) {nil}
+      let(:first_name) { nil }
+      let(:last_name) { nil }
+      let(:username) { nil }
 
       before do
         allow(User).to receive(:create).and_return(nil)
