@@ -23,8 +23,7 @@
 
 .idea/
 
-# DotEnv files
-.env
+# Environment variables
 .env.development
 .env.development.local
 
