@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Users::CreateUser do
+RSpec.describe Users::CreateUserInteractor do
   let(:first_name) { 'Christopher' }
   let(:last_name) { 'Bartling' }
   let(:username) { 'xbartlingx' }
 
-  subject(:context) { Users::CreateUser.call(
+  subject(:context) { Users::CreateUserInteractor.call(
     first_name: first_name,
     last_name: last_name,
     username: username

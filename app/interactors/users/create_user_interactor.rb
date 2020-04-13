@@ -1,5 +1,5 @@
 module Users
-  class CreateUser
+  class CreateUserInteractor
     include Interactor
 
     def call
