@@ -1,6 +1,7 @@
 module Mutations
   class CreateUserMutation < BaseMutation
     field :user, Types::UserType, null: true
+    field :message, String, null: false
     field :errors, [String], null: false
 
     argument :input, InputTypes::CreateUserInputType, required: true
@@ -12,17 +13,12 @@ module Mutations
         username: input.username
       )
 
-      if context.failure?
-        {
-          user: nil,
-          errors: [context.message]
-        }
-      else
-        {
-          user: context.user,
-          errors: []
-        }
+      result = {user: nil, message: context.message, errors: context.errors}
+      if context.success?
+        result = {user: context.user, message: context.message, errors: context.errors}
       end
+
+      result
     end
   end
 end
