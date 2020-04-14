@@ -36,11 +36,12 @@ module GummiBears
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        # regular expressions can be used here
-        # origins 'localhost:3000', '127.0.0.1:3000', /\Ahttp:\/\/192\.168\.0\.\d{1,3}(:\d+)?\z/
-
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :options]
+        resource(
+          '*',
+          headers: :any,
+          methods: [:get, :patch, :put, :delete, :post, :options]
+        )
       end
     end
   end
