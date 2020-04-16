@@ -22,6 +22,7 @@ gem 'puma', '~> 4.1'
 gem 'interactor'
 gem 'graphql'
 gem 'aws-sdk-s3', require: false
+gem 'auth0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -31,6 +32,7 @@ gem 'rack-cors'
 
 gem 'rollbar'
 gem 'scout_apm'
+
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
