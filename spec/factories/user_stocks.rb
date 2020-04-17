@@ -5,8 +5,12 @@
 # *id*::         <tt>uuid, not null, primary key</tt>
 # *created_at*:: <tt>datetime, not null</tt>
 # *updated_at*:: <tt>datetime, not null</tt>
-# *stock_id*::   <tt>uuid, not null</tt>
-# *user_id*::    <tt>uuid, not null</tt>
+# *stock_id*::   <tt>uuid, not null, indexed => [user_id]</tt>
+# *user_id*::    <tt>uuid, not null, indexed => [stock_id]</tt>
+#
+# Indexes
+#
+#  user_id_stock_id_unique_idx  (user_id,stock_id) UNIQUE
 #
 # Foreign Keys
 #
