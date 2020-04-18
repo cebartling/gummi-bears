@@ -24,4 +24,6 @@ class UserStock < ApplicationRecord
   belongs_to :user
   belongs_to :stock
 
+  delegate :name, to: :stock, allow_nil: false
+  delegate :symbol, to: :stock, allow_nil: false
 end

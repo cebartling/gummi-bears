@@ -28,4 +28,9 @@ RSpec.describe UserStock, type: :model do
     it { should belong_to(:stock).class_name('Stock') }
   end
 
+  describe 'delegation' do
+    it { should delegate_method(:name).to(:stock) }
+    it { should delegate_method(:symbol).to(:stock) }
+  end
+
 end
