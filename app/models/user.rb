@@ -16,4 +16,5 @@
 # == Schema Information End
 #++
 class User < ApplicationRecord
+  has_many :stocks, foreign_key: 'user_id', class_name: 'UserStock'
 end

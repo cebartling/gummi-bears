@@ -18,4 +18,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
+  describe 'associations' do
+    it { should have_many(:stocks).with_foreign_key('user_id').class_name('UserStock') }
+  end
 end
