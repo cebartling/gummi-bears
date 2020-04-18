@@ -11,8 +11,6 @@ require 'seeds/user_stocks/user_stocks_seed'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-if Rails.env.development?
-  Seeds::Users::UsersSeed.execute
-  Seeds::Stocks::StocksSeed.execute
-  Seeds::UserStocks::UserStocksSeed.execute
-end
+Seeds::Users::UsersSeed.execute
+Seeds::Stocks::StocksSeed.execute
+Seeds::UserStocks::UserStocksSeed.execute
