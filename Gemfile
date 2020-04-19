@@ -22,8 +22,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'interactor'
 gem 'graphql'
 gem 'aws-sdk-s3', require: false
-gem 'auth0'
 gem 'jwt'
+gem 'devise_token_auth'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
