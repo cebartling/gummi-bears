@@ -9,8 +9,8 @@ RSpec.describe Stocks::CreateStockInteractor do
                                                          symbol: stock_symbol,
                                                          user_id: user_id) }
 
-  describe ".call" do
-    context "when given valid parameters" do
+  describe '.call' do
+    context 'when given valid parameters' do
       let(:stock) { FactoryBot.build(:stock) }
       let(:user) { FactoryBot.build(:user) }
       let(:user_stock) { FactoryBot.build(:user_stock) }
@@ -22,19 +22,19 @@ RSpec.describe Stocks::CreateStockInteractor do
           allow(UserStock).to receive(:create).and_return(user_stock)
         end
 
-        it "succeeds" do
+        it 'succeeds' do
           expect(context).to be_a_success
         end
 
-        it "provides the newly created stock" do
+        it 'provides the newly created stock' do
           expect(context.stock).to eq(stock)
         end
 
-        it "provides the newly created user/stock association" do
+        it 'provides the newly created user/stock association' do
           expect(context.user_stock).to eq(user_stock)
         end
 
-        it "provides the existing user" do
+        it 'provides the existing user' do
           expect(context.user).to eq(user)
         end
       end
@@ -46,7 +46,7 @@ RSpec.describe Stocks::CreateStockInteractor do
           allow(UserStock).to receive(:create).and_return(user_stock)
         end
 
-        it "succeeds" do
+        it 'succeeds' do
           expect(context).to be_a_success
         end
 
