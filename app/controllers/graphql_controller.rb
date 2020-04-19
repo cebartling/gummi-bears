@@ -1,5 +1,5 @@
-class GraphqlController < ApplicationController
-  include Secured
+class GraphqlController < BaseController
+  # include Secured
 
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,

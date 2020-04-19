@@ -23,7 +23,6 @@ gem 'interactor'
 gem 'graphql'
 gem 'aws-sdk-s3', require: false
 gem 'jwt'
-gem 'devise_token_auth'
 
 
 # Reduces boot times through caching; required in config/boot.rb
