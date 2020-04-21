@@ -17,9 +17,9 @@ RSpec.describe Stocks::CreateStockInteractor do
 
       context 'when stock does not already exist' do
         before(:each) do
-          allow(Stock).to receive(:create).and_return(stock)
+          allow(Stock).to receive(:create!).and_return(stock)
           allow(User).to receive(:find).with(user_id).and_return(user)
-          allow(UserStock).to receive(:create).and_return(user_stock)
+          allow(UserStock).to receive(:create!).and_return(user_stock)
         end
 
         it 'succeeds' do
@@ -43,7 +43,7 @@ RSpec.describe Stocks::CreateStockInteractor do
         before(:each) do
           allow(Stock).to receive(:find_by).with(symbol: stock_symbol).and_return(stock)
           allow(User).to receive(:find).with(user_id).and_return(user)
-          allow(UserStock).to receive(:create).and_return(user_stock)
+          allow(UserStock).to receive(:create!).and_return(user_stock)
         end
 
         it 'succeeds' do
@@ -73,7 +73,7 @@ RSpec.describe Stocks::CreateStockInteractor do
         before(:each) do
           allow(Stock).to receive(:find_by).with(symbol: stock_symbol).and_return(stock)
           allow(User).to receive(:find).with(user_id).and_return(nil)
-          allow(UserStock).to receive(:create).and_return(user_stock)
+          allow(UserStock).to receive(:create!).and_return(user_stock)
         end
 
         it 'fails' do
@@ -93,7 +93,26 @@ RSpec.describe Stocks::CreateStockInteractor do
         before(:each) do
           allow(Stock).to receive(:find_by).with(symbol: stock_symbol).and_return(stock)
           allow(User).to receive(:find).with(user_id).and_return(user)
-          allow(UserStock).to receive(:create).and_return(nil)
+          allow(UserStock).to receive(:create!).and_raise('Boom')
+        end
+
+        it 'fails' do
+          expect(context).to be_a_failure
+        end
+
+        it 'provides a failure message' do
+          expect(context.message).to be_present
+        end
+
+        it 'provides an error array with one message' do
+          expect(context.errors.length).to eq(1)
+        end
+      end
+
+      context 'when unable to create the stock' do
+        before(:each) do
+          allow(Stock).to receive(:find_by).with(symbol: stock_symbol).and_return(nil)
+          allow(Stock).to receive(:create!).and_raise('Boom')
         end
 
         it 'fails' do
