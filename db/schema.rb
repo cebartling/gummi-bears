@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_192453) do
+ActiveRecord::Schema.define(version: 2020_04_24_212114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_192453) do
     t.integer "volume", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["stock_id", "event_date"], name: "stock_id_and_event_date_unique_idx", unique: true
   end
 
   create_table "intraday_time_series_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
