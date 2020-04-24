@@ -27,8 +27,16 @@ require 'rails_helper'
 
 RSpec.describe IntradayTimeSeriesEvent, type: :model do
 
+  let(:stock) { FactoryBot.create(:stock) }
+
+
   describe 'associations' do
     it { should belong_to(:stock).class_name('Stock') }
   end
+
+  # describe 'validations' do
+  #   subject { FactoryBot.create(:intraday_time_series_event, stock: stock) }
+  #   it { should validate_uniqueness_of(:event_datetime).scoped_to(:stock_id) }
+  # end
 
 end

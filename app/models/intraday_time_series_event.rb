@@ -25,5 +25,7 @@
 #++
 class IntradayTimeSeriesEvent < ApplicationRecord
 
+  validates :event_datetime, uniqueness: { scope: :stock_id }
+
   belongs_to :stock
 end
