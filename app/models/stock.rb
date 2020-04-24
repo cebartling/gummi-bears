@@ -15,4 +15,7 @@
 # == Schema Information End
 #++
 class Stock < ApplicationRecord
+
+  has_many :daily_time_series_events
+  has_many :intraday_time_series_events
 end

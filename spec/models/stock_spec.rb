@@ -17,4 +17,10 @@
 require 'rails_helper'
 
 RSpec.describe Stock, type: :model do
+
+  describe 'associations' do
+    it { should have_many(:daily_time_series_events).class_name('DailyTimeSeriesEvent') }
+    it { should have_many(:intraday_time_series_events).class_name('IntradayTimeSeriesEvent') }
+  end
+
 end
