@@ -1,5 +1,5 @@
 module Stocks
-  class RetrieveTimeSeriesIntradayInteractor
+  class RetrieveIntradayTimeSeriesEventsInteractor
     include Interactor
 
     def call

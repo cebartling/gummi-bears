@@ -4,7 +4,7 @@ namespace :financial_apis do
   task :intraday_time_series => :environment do
     symbols = ['MSFT']
     symbols.each do |symbol|
-      Stocks::RetrieveTimeSeriesIntradayInteractor.call(symbol: symbol)
+      Stocks::RetrieveIntradayTimeSeriesEventsInteractor.call(symbol: symbol)
     end
   end
 end

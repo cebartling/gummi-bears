@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Stocks::RetrieveTimeSeriesIntradayInteractor do
+RSpec.describe Stocks::RetrieveIntradayTimeSeriesEventsInteractor do
 
   let(:stock_symbol) { 'IBM' }
   let(:stock) { FactoryBot.build(:stock) }
 
-  subject(:context) { Stocks::RetrieveTimeSeriesIntradayInteractor.call(symbol: stock_symbol) }
+  subject(:context) { Stocks::RetrieveIntradayTimeSeriesEventsInteractor.call(symbol: stock_symbol) }
 
 
   context 'when given valid parameters' do
