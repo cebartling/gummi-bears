@@ -22,7 +22,7 @@ module Stocks
         query: {
           function: 'TIME_SERIES_INTRADAY',
           symbol: context.symbol,
-          INTERVAL: INTERVAL,
+          interval: INTERVAL,
           apikey: ENV['ALPHA_VANTAGE_API_KEY'],
         },
         headers: {'Content-Type' => 'application/json'}
