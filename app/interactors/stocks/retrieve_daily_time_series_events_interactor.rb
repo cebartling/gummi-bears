@@ -2,26 +2,9 @@ module Stocks
   class RetrieveDailyTimeSeriesEventsInteractor
     include Interactor
 
-
     def call
-      options = {
-        query: {
-          function: 'TIME_SERIES_DAILY',
-          symbol: context.symbol,
-          apikey: ENV['ALPHA_VANTAGE_API_KEY'],
-        },
-        headers: {'Content-Type' => 'application/json'}
-      }
-      response = HTTParty.get('https://www.alphavantage.co/query', options)
-      response_body = response.body
+      response_json = retrieve_events
 
-      unless response_body
-        context.fail!(message: 'retrieve_time_series_intraday.failure',
-                      errors: ["Unable to retrieve time series intraday for symbol '#{context.symbol}'."])
-      end
-
-
-      response_json = JSON.parse(response_body)
       timezone = retrieve_timezone(response_json)
       key = 'Time Series (Daily)'
       if (response_json.key?(key))
@@ -32,6 +15,24 @@ module Stocks
     end
 
     private
+
+    def retrieve_events
+      options = {
+        query: {
+          function: 'TIME_SERIES_DAILY',
+          symbol: context.symbol,
+          apikey: ENV['ALPHA_VANTAGE_API_KEY'],
+        },
+        headers: {'Content-Type' => 'application/json'}
+      }
+      response = HTTParty.get('https://www.alphavantage.co/query', options)
+      response_body = response.body
+      unless response_body
+        context.fail!(message: 'retrieve_time_series_intraday.failure',
+                      errors: ["Unable to retrieve time series intraday for symbol '#{context.symbol}'."])
+      end
+      JSON.parse(response_body)
+    end
 
     def retrieve_timezone(response_json)
       result = 'US/Eastern'

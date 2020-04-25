@@ -2,14 +2,27 @@ module Stocks
   class RetrieveIntradayTimeSeriesEventsInteractor
     include Interactor
 
+    INTERVAL = '5min'
 
     def call
-      interval = '5min'
+      response_json = retrieve_events
+      timezone = retrieve_timezone(response_json)
+      key = "Time Series (#{INTERVAL})"
+      if (response_json.key?(key))
+        entries = response_json[key]
+        stock = Stock.find_by(symbol: context.symbol)
+        process_entries(entries, stock)
+      end
+    end
+
+    private
+
+    def retrieve_events
       options = {
         query: {
           function: 'TIME_SERIES_INTRADAY',
           symbol: context.symbol,
-          interval: interval,
+          INTERVAL: INTERVAL,
           apikey: ENV['ALPHA_VANTAGE_API_KEY'],
         },
         headers: {'Content-Type' => 'application/json'}
@@ -21,19 +34,8 @@ module Stocks
         context.fail!(message: 'retrieve_time_series_intraday.failure',
                       errors: ["Unable to retrieve daily time series events for symbol '#{context.symbol}'."])
       end
-
-
-      response_json = JSON.parse(response_body)
-      timezone = retrieve_timezone(response_json)
-      key = "Time Series (#{interval})"
-      if (response_json.key?(key))
-        entries = response_json[key]
-        stock = Stock.find_by(symbol: context.symbol)
-        process_entries(entries, stock)
-      end
+      JSON.parse(response_body)
     end
-
-    private
 
     def retrieve_timezone(response_json)
       result = 'US/Eastern'
