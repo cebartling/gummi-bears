@@ -1,15 +1,13 @@
 module Stocks
-  class RetrieveIntradayTimeSeriesEventsInteractor
+  class RetrieveDailyTimeSeriesEventsInteractor
     include Interactor
 
 
     def call
-      interval = '5min'
       options = {
         query: {
-          function: 'TIME_SERIES_INTRADAY',
+          function: 'TIME_SERIES_DAILY',
           symbol: context.symbol,
-          interval: interval,
           apikey: ENV['ALPHA_VANTAGE_API_KEY'],
         },
         headers: {'Content-Type' => 'application/json'}
@@ -19,13 +17,13 @@ module Stocks
 
       unless response_body
         context.fail!(message: 'retrieve_time_series_intraday.failure',
-                      errors: ["Unable to retrieve daily time series events for symbol '#{context.symbol}'."])
+                      errors: ["Unable to retrieve time series intraday for symbol '#{context.symbol}'."])
       end
 
 
       response_json = JSON.parse(response_body)
       timezone = retrieve_timezone(response_json)
-      key = "Time Series (#{interval})"
+      key = 'Time Series (Daily)'
       if (response_json.key?(key))
         entries = response_json[key]
         stock = Stock.find_by(symbol: context.symbol)
@@ -52,16 +50,16 @@ module Stocks
       entries.keys.each do |entry_key|
         entry = entries[entry_key]
         # TODO: Get timezone from metadata and convert
-        event_datetime = Time.strptime(entry_key, '%Y-%m-%d %H:%M:%S')
+        event_date = Date.strptime(entry_key, '%Y-%m-%d')
         open_str = entry["1. open"]
         high_str = entry["2. high"]
         low_str = entry["3. low"]
         close_str = entry["4. close"]
         volume_str = entry["5. volume"]
-        unless IntradayTimeSeriesEvent.find_by(stock: stock, event_datetime: event_datetime)
-          IntradayTimeSeriesEvent.create!(
+        unless DailyTimeSeriesEvent.find_by(stock: stock, event_date: event_date)
+          DailyTimeSeriesEvent.create!(
             stock: stock,
-            event_datetime: event_datetime,
+            event_date: event_date,
             open_price: BigDecimal(open_str),
             high_price: BigDecimal(high_str),
             low_price: BigDecimal(low_str),

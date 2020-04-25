@@ -9,7 +9,7 @@ RSpec.describe Stocks::RetrieveIntradayTimeSeriesEventsInteractor do
 
 
   context 'when given valid parameters' do
-    let(:response_body) { File.read('spec/interactors/stocks/time_series_intraday_response.json') }
+    let(:response_body) { File.read('spec/interactors/stocks/intraday_time_series_events_response.json') }
     let(:response) { OpenStruct.new(body: response_body) }
 
     context 'when Alpha Vantage API responds appropriately' do
