@@ -25,6 +25,12 @@
 #++
 FactoryBot.define do
   factory :intraday_time_series_event do
-    
+    close_price { BigDecimal('6.75') }
+    event_datetime { DateTime.new }
+    high_price { BigDecimal('6.98') }
+    low_price { BigDecimal('6.42') }
+    open_price { BigDecimal('6.66') }
+    volume { 64743 }
+    association :stock, factory: :stock
   end
 end
