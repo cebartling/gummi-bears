@@ -41,5 +41,16 @@ module Types
     def user_by_auth_token(auth_token:)
       User.find_by(auth_token: auth_token)
     end
+
+    field :stock_by_id, StockType,
+          null: true,
+          description: 'Find a stock by its unique identifier' do
+      argument :id, ID, required: true
+    end
+
+    def stock_by_id(id:)
+      Stock.find(id)
+    end
+
   end
 end
