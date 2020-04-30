@@ -1,7 +1,7 @@
 class AddTransactionTypeEnum < ActiveRecord::Migration[6.0]
   def up
     execute <<-SQL
-      CREATE TYPE investment_transaction_type AS ENUM ('BUY', 'SELL');
+      CREATE TYPE investment_transaction_type AS ENUM ('buy', 'sell');
     SQL
   end
 
