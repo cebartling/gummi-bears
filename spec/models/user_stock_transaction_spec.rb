@@ -25,10 +25,8 @@
 require 'rails_helper'
 
 RSpec.describe UserStockTransaction, type: :model do
-  
-  # it do
-  #   should define_enum_for(:transaction_type).
-  #     with_values([:buy, :sell]).
-  #     with_prefix(:transaction_type)
-  # end
+
+  it do
+    should define_enum_for(:transaction_type)
+  end
 end
