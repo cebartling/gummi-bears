@@ -8,17 +8,7 @@ class CreateUserStockTransactions < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    # def up
-    #   execute <<-SQL
-    #     CREATE TYPE investment_transaction_type AS ENUM ('buy', 'sell');
-    #   SQL
-    # end
-    #
-    # def down
-    #   execute <<-SQL
-    #     DROP TYPE investment_transaction_type;
-    #   SQL
-    # end
+
 
     # add_column :user_stock_transactions,
     #            :transaction_type,
