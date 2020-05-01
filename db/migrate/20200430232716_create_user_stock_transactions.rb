@@ -8,15 +8,6 @@ class CreateUserStockTransactions < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-
-
-    # add_column :user_stock_transactions,
-    #            :transaction_type,
-    #            :investment_transaction_type,
-    #            null: false
-
     add_foreign_key :user_stock_transactions, :user_stocks
-
-    # add_index :user_stock_transactions, :transaction_type
   end
 end
