@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_015522) do
+ActiveRecord::Schema.define(version: 2020_04_30_232716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -66,11 +66,14 @@ ActiveRecord::Schema.define(version: 2020_05_01_015522) do
 
   create_table "user_stock_transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_stock_id", null: false
+    t.integer "transaction_type", null: false
     t.integer "price_in_cents", null: false
     t.integer "shares_count", null: false
     t.datetime "transaction_timestamp", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["transaction_timestamp"], name: "index_user_stock_transactions_on_transaction_timestamp"
+    t.index ["transaction_type"], name: "index_user_stock_transactions_on_transaction_type"
   end
 
   create_table "user_stocks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
