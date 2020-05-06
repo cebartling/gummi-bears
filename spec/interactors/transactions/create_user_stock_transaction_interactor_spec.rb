@@ -31,7 +31,7 @@ RSpec.describe Transactions::CreateUserStockTransactionInteractor do
       end
 
       it 'provides the newly created user stock transaction' do
-        expect(context.transaction).to eq(user_stock_transaction)
+        expect(context.user_stock_transaction).to eq(user_stock_transaction)
       end
     end
 
