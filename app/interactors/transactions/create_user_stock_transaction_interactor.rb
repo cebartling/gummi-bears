@@ -3,25 +3,25 @@ module Transactions
     include Interactor
 
     def call
-      context.message = 'transaction_create.success'
+      context.message = 'user_stock_transaction_create.success'
       context.errors = []
 
       user_stock = UserStock.find(context.user_stock_id)
 
       if user_stock
-        context.transaction = UserStockTransaction.create(
+        context.user_stock_transaction = UserStockTransaction.create(
           price_in_cents: context.price_in_cents,
           shares_count: context.shares_count,
           transaction_timestamp: context.transaction_timestamp,
           transaction_type: context.transaction_type,
           user_stock: user_stock
         )
-        unless context.transaction
-          context.fail!(message: 'stock_create.failure',
+        unless context.user_stock_transaction
+          context.fail!(message: 'user_stock_transaction_create.failure',
                         errors: ["Unable to create a new user stock transaction."])
         end
       else
-        context.fail!(message: 'stock_create.failure',
+        context.fail!(message: 'user_stock_transaction_create.failure',
                       errors: ["Unable to find user stock."])
       end
     end

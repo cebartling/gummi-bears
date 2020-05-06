@@ -29,4 +29,8 @@ RSpec.describe UserStockTransaction, type: :model do
   it do
     should define_enum_for(:transaction_type)
   end
+
+  describe 'associations' do
+    it { should belong_to(:user_stock).class_name('UserStock') }
+  end
 end

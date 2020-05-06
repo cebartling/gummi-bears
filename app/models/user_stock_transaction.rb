@@ -23,5 +23,7 @@
 # == Schema Information End
 #++
 class UserStockTransaction < ApplicationRecord
-  enum transaction_type: %i[buy sell], _prefix: :transaction_type
+  enum transaction_type: %i[buy sell]
+
+  belongs_to :user_stock
 end
