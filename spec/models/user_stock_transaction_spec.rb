@@ -33,4 +33,9 @@ RSpec.describe UserStockTransaction, type: :model do
   describe 'associations' do
     it { should belong_to(:user_stock).class_name('UserStock') }
   end
+
+  describe 'delegation' do
+    it { should delegate_method(:company_name).to(:user_stock) }
+    it { should delegate_method(:stock_symbol).to(:user_stock) }
+  end
 end

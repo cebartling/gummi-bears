@@ -6,5 +6,7 @@ module Types
     field :shares_count, Integer, "Transaction share count", null: false
     field :transaction_timestamp, GraphQL::Types::ISO8601DateTime, "Transaction timestamp", null: false
     field :transaction_type, Types::TransactionType, "Transaction type: buy or sell", null: false
+    field :company_name, String, null: false
+    field :stock_symbol, String, null: false
   end
 end

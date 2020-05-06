@@ -26,4 +26,7 @@ class UserStockTransaction < ApplicationRecord
   enum transaction_type: %i[buy sell]
 
   belongs_to :user_stock
+
+  delegate :company_name, to: :user_stock, allow_nil: false
+  delegate :stock_symbol, to: :user_stock, allow_nil: false
 end
