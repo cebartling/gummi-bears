@@ -4,6 +4,7 @@ module Types
     field :user_stock, Types::UserStockType, "User/stock association", null: false
     field :price_in_cents, Integer, "Transaction price for the stock", null: false
     field :shares_count, Integer, "Transaction share count", null: false
+    field :total_amount_in_cents, Integer, "Total amount for the transaction", null: false
     field :transaction_timestamp, GraphQL::Types::ISO8601DateTime, "Transaction timestamp", null: false
     field :transaction_type, Types::TransactionType, "Transaction type: buy or sell", null: false
     field :company_name, String, null: false
