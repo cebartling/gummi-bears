@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_232716) do
+ActiveRecord::Schema.define(version: 2020_05_10_023400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_232716) do
     t.datetime "transaction_timestamp", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "total_amount_in_cents", default: 0, null: false
     t.index ["transaction_timestamp"], name: "index_user_stock_transactions_on_transaction_timestamp"
     t.index ["transaction_type"], name: "index_user_stock_transactions_on_transaction_type"
   end
