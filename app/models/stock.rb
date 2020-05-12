@@ -18,5 +18,5 @@ class Stock < ApplicationRecord
 
   has_many :daily_time_series_events, -> { order(event_date: :desc) }
   has_many :intraday_time_series_events, -> { order(event_datetime: :desc) }
-
+  has_many :simple_moving_average_analytics
 end
