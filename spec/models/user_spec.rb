@@ -23,5 +23,6 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { should have_many(:user_stocks).with_foreign_key('user_id').class_name('UserStock') }
+    it { should have_many(:user_stock_transactions).through(:user_stocks).class_name('UserStockTransaction') }
   end
 end

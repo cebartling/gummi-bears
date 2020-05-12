@@ -21,4 +21,5 @@ class User < ApplicationRecord
   has_secure_token :auth_token
 
   has_many :user_stocks, foreign_key: 'user_id', class_name: 'UserStock'
+  has_many :user_stock_transactions, class_name: 'UserStockTransaction', through: :user_stocks
 end
