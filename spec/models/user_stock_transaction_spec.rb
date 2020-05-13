@@ -27,8 +27,8 @@ require 'rails_helper'
 
 RSpec.describe UserStockTransaction, type: :model do
 
-  it do
-    should define_enum_for(:transaction_type)
+  describe 'enumerations' do
+    it { should define_enum_for(:transaction_type) }
   end
 
   describe 'associations' do

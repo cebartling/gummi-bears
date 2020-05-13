@@ -20,9 +20,13 @@ require 'rails_helper'
 
 RSpec.describe SimpleMovingAverageAnalytic, type: :model do
 
+  describe 'enumerations' do
+    it { should define_enum_for(:interval_type) }
+    it { should define_enum_for(:series_type) }
+  end
+
   describe 'associations' do
     it { should belong_to(:stock).class_name('Stock') }
     it { should have_many(:simple_moving_average_entries).class_name('SimpleMovingAverageEntry') }
   end
-
 end
