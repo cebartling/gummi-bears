@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_05_12_184735) do
   create_table "simple_moving_average_entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "simple_moving_average_analytic_id", null: false
     t.datetime "event_timestamp", null: false
-    t.decimal "observation_value", null: false
+    t.integer "observation_value_in_cents", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

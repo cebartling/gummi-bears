@@ -3,7 +3,7 @@ class CreateSimpleMovingAverageEntries < ActiveRecord::Migration[6.0]
     create_table :simple_moving_average_entries, id: :uuid do |t|
       t.uuid :simple_moving_average_analytic_id, null: false
       t.timestamp :event_timestamp, null: false
-      t.decimal :observation_value, null: false
+      t.integer :observation_value_in_cents, null: false
       t.timestamps
     end
 

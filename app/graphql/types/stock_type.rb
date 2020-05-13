@@ -26,5 +26,12 @@ module Types
     def latest_daily_time_series_event
       object.daily_time_series_events.first
     end
+
+    field :simple_moving_average_analytics, [SimpleMovingAverageAnalyticType],null: false do
+    end
+
+    def simple_moving_average_analytics
+      object.simple_moving_average_analytics
+    end
   end
 end

@@ -4,7 +4,7 @@
 #
 # *id*::                                <tt>uuid, not null, primary key</tt>
 # *event_timestamp*::                   <tt>datetime, not null</tt>
-# *observation_value*::                 <tt>decimal(, ), not null</tt>
+# *observation_value_in_cents*::        <tt>integer, not null</tt>
 # *created_at*::                        <tt>datetime, not null</tt>
 # *updated_at*::                        <tt>datetime, not null</tt>
 # *simple_moving_average_analytic_id*:: <tt>uuid, not null</tt>
