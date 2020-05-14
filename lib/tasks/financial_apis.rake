@@ -17,4 +17,14 @@ namespace :financial_apis do
       Stocks::RetrieveDailyTimeSeriesEventsInteractor.call(symbol: stock.symbol)
     end
   end
+
+  desc "Retrieves the simple moving average analytic data for each stock in our system."
+  task :simple_moving_average_analytic => :environment do
+    stocks = Stock.all
+    stocks.each do |stock|
+      puts "===> Retrieving simple moving average for #{stock.name} - #{stock.symbol}..."
+      Stocks::RetrieveSimpleMovingAverageAnalyticInteractor.call(symbol: stock.symbol)
+      # sleep(55.seconds)
+    end
+  end
 end
