@@ -1,5 +1,16 @@
 version: '3.7'
 services:
+  gummi-bears-toxiproxy:
+    image: shopify/toxiproxy
+    restart: always
+    expose:
+      - "22220"
+  gummi-bears-toxiproxy-configurer:
+    build:
+      context: .
+      dockerfile: Dockerfile-toxiproxy-configurer
+    depends_on:
+      - gummi-bears-toxiproxy
   gummi-bears-db:
     image: postgres
     restart: always

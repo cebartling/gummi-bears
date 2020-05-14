@@ -1,0 +1,6 @@
+FROM alpine:latest
+
+RUN apk update
+RUN apk upgrade
+RUN apk add curl bash
+CMD curl -s -XPOST -d '{"name" : "gummi-bears-db", "listen" : "gummi-bears-toxiproxy:22220", "upstream" : "gummi-bears-db:5432"}' http://gummi-bears-toxiproxy:8474/proxies
