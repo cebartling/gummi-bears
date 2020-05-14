@@ -7,10 +7,6 @@ module Stocks
       if stock
         stock.simple_moving_average_analytics.each do |simple_moving_average_analytic|
           response_json = retrieve_events(simple_moving_average_analytic)
-
-          puts response_json.inspect
-
-          timezone = retrieve_timezone(response_json)
           key = 'Technical Analysis: SMA'
           if (response_json.key?(key))
             entries = response_json[key]
@@ -38,6 +34,10 @@ module Stocks
         headers: {'Content-Type' => 'application/json'}
       }
       response = HTTParty.get('https://www.alphavantage.co/query', options)
+      unless response
+        context.fail!(message: 'retrieve_simple_moving_average.failure',
+                      errors: ["Unable to retrieve simple moving average analytic for symbol '#{context.symbol}'."])
+      end
       response_body = response.body
       unless response_body
         context.fail!(message: 'retrieve_simple_moving_average.failure',
@@ -46,23 +46,9 @@ module Stocks
       JSON.parse(response_body)
     end
 
-    def retrieve_timezone(response_json)
-      result = 'US/Eastern'
-      metadata_key = 'Meta Data'
-      if response_json.key?(metadata_key)
-        metadata = response_json[metadata_key]
-        timezone_key = '7. Time Zone'
-        if metadata.key?(timezone_key)
-          result = metadata[timezone_key]
-        end
-      end
-      result
-    end
-
     def process_entries(entries, simple_moving_average_analytic)
       entries.keys.each do |entry_key|
         entry = entries[entry_key]
-        # TODO: Get timezone from metadata and convert
         event_timestamp = DateTime.strptime(entry_key, '%Y-%m-%d')
         observation_value = entry[FUNCTION]
         unless SimpleMovingAverageEntry.find_by(simple_moving_average_analytic: simple_moving_average_analytic,

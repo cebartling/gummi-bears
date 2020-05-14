@@ -2,14 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Stocks::RetrieveSimpleMovingAverageAnalyticInteractor do
 
-
   let(:stock_symbol) { 'IBM' }
   let(:stock) { FactoryBot.build(:stock) }
   let(:simple_moving_average_analytic1) { FactoryBot.build(:simple_moving_average_analytic, stock: stock) }
   let(:simple_moving_average_analytic2) { FactoryBot.build(:simple_moving_average_analytic, stock: stock) }
 
   subject(:context) { Stocks::RetrieveSimpleMovingAverageAnalyticInteractor.call(symbol: stock_symbol) }
-
 
   context 'when given valid parameters' do
     let(:response_body) { File.read('spec/interactors/stocks/simple_moving_average_events_response.json') }
