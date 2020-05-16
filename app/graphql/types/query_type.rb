@@ -62,7 +62,7 @@ module Types
       UserStock.find(id)
     end
 
-    field :simple_moving_average_analytic_by_stock_id, SimpleMovingAverageAnalytic,
+    field :simple_moving_average_analytic_by_stock_id, SimpleMovingAverageAnalyticType,
           null: true,
           description: "Find a stock's simple moving average analytic by interval, series and time period." do
       argument :stock_id, ID, required: true
@@ -78,6 +78,5 @@ module Types
                                           series_type: series_type,
                                           time_period: time_period)
     end
-
   end
 end
