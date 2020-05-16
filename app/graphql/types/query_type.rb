@@ -62,5 +62,22 @@ module Types
       UserStock.find(id)
     end
 
+    field :simple_moving_average_analytic_by_stock_id, SimpleMovingAverageAnalytic,
+          null: true,
+          description: "Find a stock's simple moving average analytic by interval, series and time period." do
+      argument :stock_id, ID, required: true
+      argument :interval_type, Types::IntervalType, required: true
+      argument :series_type, Types::SeriesType, required: true
+      argument :time_period, Integer, required: true
+    end
+
+    def simple_moving_average_analytic_by_stock_id(stock_id:, interval_type:, series_type:, time_period:)
+      stock = Stock.find(stock_id)
+      SimpleMovingAverageAnalytic.find_by(stock: stock,
+                                          interval_type: interval_type,
+                                          series_type: series_type,
+                                          time_period: time_period)
+    end
+
   end
 end
