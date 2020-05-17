@@ -23,5 +23,14 @@
 require 'rails_helper'
 
 RSpec.describe RelativeStrengthIndexAnalytic, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe 'enumerations' do
+    it { should define_enum_for(:interval_type) }
+    it { should define_enum_for(:series_type) }
+  end
+
+  describe 'associations' do
+    it { should belong_to(:stock).class_name('Stock') }
+    # it { should have_many(:simple_moving_average_entries).class_name('SimpleMovingAverageEntry') }
+  end
 end

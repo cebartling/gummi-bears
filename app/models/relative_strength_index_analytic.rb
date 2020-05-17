@@ -21,4 +21,8 @@
 # == Schema Information End
 #++
 class RelativeStrengthIndexAnalytic < ApplicationRecord
+  enum interval_type: %i[1min 5min 15min 30min 60min daily weekly monthly]
+  enum series_type: %i[close open high low]
+
+  belongs_to :stock
 end
