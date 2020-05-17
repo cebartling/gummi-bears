@@ -31,6 +31,6 @@ RSpec.describe RelativeStrengthIndexAnalytic, type: :model do
 
   describe 'associations' do
     it { should belong_to(:stock).class_name('Stock') }
-    # it { should have_many(:simple_moving_average_entries).class_name('SimpleMovingAverageEntry') }
+    it { should have_many(:relative_strength_index_entries).class_name('RelativeStrengthIndexEntry') }
   end
 end

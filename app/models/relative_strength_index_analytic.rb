@@ -25,4 +25,5 @@ class RelativeStrengthIndexAnalytic < ApplicationRecord
   enum series_type: %i[close open high low]
 
   belongs_to :stock
+  has_many :relative_strength_index_entries
 end

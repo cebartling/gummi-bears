@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_171358) do
+ActiveRecord::Schema.define(version: 2020_05_17_173602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 2020_05_17_171358) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["stock_id", "interval_type", "series_type", "time_period"], name: "relative_strength_index_analytics_unique_idx"
+  end
+
+  create_table "relative_strength_index_entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "relative_strength_index_analytic_id", null: false
+    t.datetime "event_timestamp", null: false
+    t.decimal "index_value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "simple_moving_average_analytics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -142,6 +150,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_171358) do
   add_foreign_key "daily_time_series_events", "stocks"
   add_foreign_key "intraday_time_series_events", "stocks"
   add_foreign_key "relative_strength_index_analytics", "stocks"
+  add_foreign_key "relative_strength_index_entries", "relative_strength_index_analytics"
   add_foreign_key "simple_moving_average_analytics", "stocks"
   add_foreign_key "simple_moving_average_entries", "simple_moving_average_analytics"
   add_foreign_key "stock_metrics", "metrics"
