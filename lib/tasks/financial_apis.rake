@@ -27,4 +27,13 @@ namespace :financial_apis do
       # sleep(55.seconds)
     end
   end
+
+  desc "Retrieves the relative strength index analytic data for each stock in our system."
+  task :relative_strength_index_analytic => :environment do
+    stocks = Stock.all
+    stocks.each do |stock|
+      puts "===> Retrieving relative strength index for #{stock.name} - #{stock.symbol}..."
+      Stocks::RetrieveRelativeStrengthIndexAnalyticInteractor.call(symbol: stock.symbol)
+    end
+  end
 end

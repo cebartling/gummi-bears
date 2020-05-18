@@ -22,6 +22,6 @@ RSpec.describe Stock, type: :model do
     it { should have_many(:daily_time_series_events).class_name('DailyTimeSeriesEvent') }
     it { should have_many(:intraday_time_series_events).class_name('IntradayTimeSeriesEvent') }
     it { should have_many(:simple_moving_average_analytics).class_name('SimpleMovingAverageAnalytic') }
+    it { should have_many(:relative_strength_index_analytics).class_name('RelativeStrengthIndexAnalytic') }
   end
-
 end
