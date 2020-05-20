@@ -47,19 +47,14 @@ module Stocks
     end
 
     def process_entries(entries, relative_strength_index_analytic)
+      data = {}
       entries.keys.each do |entry_key|
         entry = entries[entry_key]
-        event_timestamp = DateTime.strptime(entry_key, '%Y-%m-%d')
         observation_value = entry[FUNCTION]
-        unless RelativeStrengthIndexEntry.find_by(relative_strength_index_analytic: relative_strength_index_analytic,
-                                                  event_timestamp: event_timestamp)
-          RelativeStrengthIndexEntry.create!(
-            relative_strength_index_analytic: relative_strength_index_analytic,
-            event_timestamp: event_timestamp,
-            index_value: BigDecimal(observation_value)
-          )
-        end
+        data[entry_key] = BigDecimal(observation_value)
       end
+      relative_strength_index_analytic.data = data.to_json
+      relative_strength_index_analytic.save!
     end
 
   end

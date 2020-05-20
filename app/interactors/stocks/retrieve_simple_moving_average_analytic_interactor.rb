@@ -47,19 +47,14 @@ module Stocks
     end
 
     def process_entries(entries, simple_moving_average_analytic)
+      data = {}
       entries.keys.each do |entry_key|
         entry = entries[entry_key]
-        event_timestamp = DateTime.strptime(entry_key, '%Y-%m-%d')
         observation_value = entry[FUNCTION]
-        unless SimpleMovingAverageEntry.find_by(simple_moving_average_analytic: simple_moving_average_analytic,
-                                                event_timestamp: event_timestamp)
-          SimpleMovingAverageEntry.create!(
-            simple_moving_average_analytic: simple_moving_average_analytic,
-            event_timestamp: event_timestamp,
-            observation_value_in_cents: Integer(BigDecimal(observation_value) * 100)
-          )
-        end
+        data[entry_key] = BigDecimal(observation_value)
       end
+      simple_moving_average_analytic.data = data.to_json
+      simple_moving_average_analytic.save!
     end
 
   end
