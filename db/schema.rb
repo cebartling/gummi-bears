@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_173602) do
+ActiveRecord::Schema.define(version: 2020_05_20_023909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_173602) do
     t.integer "time_period", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "data"
     t.index ["stock_id", "interval_type", "series_type", "time_period"], name: "relative_strength_index_analytics_unique_idx"
   end
 
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_173602) do
     t.integer "time_period", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "data"
     t.index ["stock_id", "interval_type", "series_type", "time_period"], name: "simple_moving_average_analytics_unique_idx"
   end
 

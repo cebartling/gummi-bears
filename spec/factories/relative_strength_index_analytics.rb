@@ -3,6 +3,7 @@
 # Table name: relative_strength_index_analytics
 #
 # *id*::            <tt>uuid, not null, primary key</tt>
+# *data*::          <tt>jsonb</tt>
 # *interval_type*:: <tt>integer, not null, indexed => [stock_id, series_type, time_period]</tt>
 # *series_type*::   <tt>integer, not null, indexed => [stock_id, interval_type, time_period]</tt>
 # *time_period*::   <tt>integer, not null, indexed => [stock_id, interval_type, series_type]</tt>
