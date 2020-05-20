@@ -32,6 +32,5 @@ RSpec.describe SimpleMovingAverageAnalytic, type: :model do
 
   describe 'associations' do
     it { should belong_to(:stock).class_name('Stock') }
-    it { should have_many(:simple_moving_average_entries).class_name('SimpleMovingAverageEntry') }
   end
 end

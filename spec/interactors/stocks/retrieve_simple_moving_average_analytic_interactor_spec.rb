@@ -23,8 +23,8 @@ RSpec.describe Stocks::RetrieveSimpleMovingAverageAnalyticInteractor do
             simple_moving_average_analytic2
           ]
         )
-        allow(SimpleMovingAverageEntry).to receive(:find_by).and_return(nil)
-        allow(SimpleMovingAverageEntry).to receive(:create!)
+        allow(simple_moving_average_analytic1).to receive(:save!)
+        allow(simple_moving_average_analytic2).to receive(:save!)
       end
 
       it 'succeeds' do
