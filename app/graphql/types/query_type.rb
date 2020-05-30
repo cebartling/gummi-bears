@@ -78,5 +78,17 @@ module Types
                                           series_type: series_type,
                                           time_period: time_period)
     end
+
+    field :symbol_search, [SymbolSearchResultType],
+          null: true,
+          description: 'Find stock symbols and companies matching' do
+      argument :keywords, String, required: true
+    end
+
+    def symbol_search(keywords:)
+      context = Stocks::SymbolSearchInteractor.call(keywords: keywords)
+      context.matches
+    end
+
   end
 end
