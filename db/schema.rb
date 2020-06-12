@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_031119) do
+ActiveRecord::Schema.define(version: 2020_06_12_041751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -98,6 +98,11 @@ ActiveRecord::Schema.define(version: 2020_05_20_031119) do
     t.string "symbol", limit: 10, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "current_price_in_cents"
+    t.integer "volume"
+    t.decimal "percent_change", precision: 12, scale: 4
+    t.integer "price_change_in_cents"
+    t.date "latest_trading_date"
     t.index ["symbol"], name: "symbol_unique_idx", unique: true
   end
 
