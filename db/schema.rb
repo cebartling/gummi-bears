@@ -98,10 +98,14 @@ ActiveRecord::Schema.define(version: 2020_06_12_041751) do
     t.string "symbol", limit: 10, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "current_price_in_cents"
+    t.decimal "current_price", precision: 12, scale: 4
+    t.decimal "open_price", precision: 12, scale: 4
+    t.decimal "high_price", precision: 12, scale: 4
+    t.decimal "low_price", precision: 12, scale: 4
+    t.decimal "previous_close_price", precision: 12, scale: 4
     t.integer "volume"
     t.decimal "percent_change", precision: 12, scale: 4
-    t.integer "price_change_in_cents"
+    t.decimal "price_change", precision: 12, scale: 4
     t.date "latest_trading_date"
     t.index ["symbol"], name: "symbol_unique_idx", unique: true
   end
