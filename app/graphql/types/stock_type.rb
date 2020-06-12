@@ -3,6 +3,11 @@ module Types
     field :id, ID, null: true
     field :name, String, null: false
     field :symbol, String, null: false
+    field :current_price_in_cents, Integer, null: true
+    field :latest_trading_date, GraphQL::Types::ISO8601Date, null: true
+    field :percent_change, Float, null: true
+    field :price_change_in_cents, Integer, null: true
+    field :volume, Integer, null: true
 
     field :daily_time_series_events, [DailyTimeSeriesEventType], null: false do
       argument :limit, Integer, required: false, default_value: 20, prepare: ->(limit, ctx) {[limit, 100].min}
