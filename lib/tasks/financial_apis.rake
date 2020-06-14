@@ -1,5 +1,14 @@
 namespace :financial_apis do
 
+  desc "Retrieves the current price and volume data for each stock in our system."
+  task :current_price_volume_data => :environment do
+    stocks = Stock.all
+    stocks.each do |stock|
+      puts "===> Retrieving current price and volume data for #{stock.name} - #{stock.symbol}..."
+      Stocks::RetrieveCurrentPriceAndVolumeInteractor.call(symbol: stock.symbol)
+    end
+  end
+
   desc "Retrieves the intraday time series data for each stock in our system."
   task :intraday_time_series => :environment do
     stocks = Stock.all
