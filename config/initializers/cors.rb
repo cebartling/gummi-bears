@@ -7,10 +7,9 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'gummi-bears-dev.web.app',
-            'localhost:3000',
-            '127.0.0.1:3000'
-            # /\Ahttp:\/\/192\.168\.0\.\d{1,3}(:\d+)?\z/
+    origins 'https://gummi-bears-dev.web.app',
+            'http://localhost:5000',
+            'http://127.0.0.1:5000'
 
     resource '*',
       headers: :any,
