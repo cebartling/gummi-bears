@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.hosts << "gummi-bears-dev.web.app"
+  config.hosts << "gummi-bears-dev.herokuapp.com"
 
 
   # Code is not reloaded between requests.
