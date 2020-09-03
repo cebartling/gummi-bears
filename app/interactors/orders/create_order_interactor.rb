@@ -1,4 +1,4 @@
-module Transactions
+module Orders
   class CreateOrderInteractor
     include Interactor
 
