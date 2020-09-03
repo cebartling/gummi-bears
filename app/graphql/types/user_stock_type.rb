@@ -6,5 +6,6 @@ module Types
     field :user, Types::UserType, null: false
     field :stock, Types::StockType, null: false
     field :user_stock_transactions, [Types::UserStockTransactionType], "Stock transactions", null: false
+    field :orders, [Types::OrderType], "User/stock orders", null: false
   end
 end

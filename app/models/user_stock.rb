@@ -24,6 +24,7 @@ class UserStock < ApplicationRecord
   belongs_to :user
   belongs_to :stock
   has_many :user_stock_transactions
+  has_many :orders
 
   delegate :name, to: :stock, allow_nil: false, prefix: :company
   delegate :symbol, to: :stock, allow_nil: false, prefix: :stock
