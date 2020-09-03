@@ -7,7 +7,7 @@ module Mutations
     argument :input, InputTypes::CreateOrderInputType, required: true
 
     def resolve(input:)
-      context = Transactions::CreateOrderInteractor.call(
+      context = Orders::CreateOrderInteractor.call(
         user_stock_id: input.user_stock_id,
         price_in_cents: input.price_in_cents,
         shares_count: input.shares_count,
