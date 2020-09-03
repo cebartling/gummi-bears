@@ -6,7 +6,7 @@ module Types
     field :shares_count, Integer, "Order share count", null: false
     field :total_amount_in_cents, Integer, "Total amount for the order", null: false
     field :order_timestamp, GraphQL::Types::ISO8601DateTime, "order timestamp", null: false
-    field :order_type, Types::TransactionType, "Transaction type: buy or sell", null: false
+    field :transaction_type, Types::TransactionType, "Transaction type: buy or sell", null: false
     field :company_name, String, null: false
     field :stock_symbol, String, null: false
   end
