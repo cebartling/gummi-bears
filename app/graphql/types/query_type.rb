@@ -52,6 +52,10 @@ module Types
       Stock.find(id)
     end
 
+    def stocks
+      Stock.all
+    end
+
     field :user_stock_by_id, UserStockType,
           null: true,
           description: 'Find a user/stock association by its unique identifier' do
