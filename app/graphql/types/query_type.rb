@@ -8,7 +8,7 @@ module Types
           description: 'Retrieve all metrics' do
     end
 
-    def metrics()
+    def metrics
       Metric.all
     end
 
@@ -52,9 +52,9 @@ module Types
       Stock.find(id)
     end
 
-    field :stocks, StockType,
+    field :stocks, [StockType],
           null: true,
-          description: 'Find a stock by its unique identifier' do
+          description: 'Retrieve all stocks.' do
     end
 
     def stocks
