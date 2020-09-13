@@ -52,6 +52,11 @@ module Types
       Stock.find(id)
     end
 
+    field :stocks, StockType,
+          null: true,
+          description: 'Find a stock by its unique identifier' do
+    end
+
     def stocks
       Stock.all
     end
