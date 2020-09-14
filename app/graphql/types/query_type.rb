@@ -58,7 +58,7 @@ module Types
     end
 
     def stocks
-      Stock.all
+      Stock.sort(:name)
     end
 
     field :user_stock_by_id, UserStockType,
