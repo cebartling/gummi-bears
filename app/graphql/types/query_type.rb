@@ -54,7 +54,7 @@ module Types
 
     field :stocks, [StockType],
           null: true,
-          description: 'Retrieve all stocks.' do
+          description: 'Retrieve all stocks, ordered by name.' do
     end
 
     def stocks
