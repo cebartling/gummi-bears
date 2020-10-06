@@ -5,6 +5,7 @@
 # *id*::                     <tt>uuid, not null, primary key</tt>
 # *message*::                <tt>string(4096), not null</tt>
 # *notification_timestamp*:: <tt>datetime, not null, indexed</tt>
+# *read*::                   <tt>boolean, default(FALSE), not null</tt>
 # *created_at*::             <tt>datetime, not null</tt>
 # *updated_at*::             <tt>datetime, not null</tt>
 # *user_id*::                <tt>uuid, not null</tt>
@@ -22,4 +23,5 @@
 class Notification < ApplicationRecord
 
   belongs_to :user
+
 end
