@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_135119) do
 
   create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
-    t.string "message", limit: 4096, null: false
+    t.text "message", null: false
     t.boolean "read", default: false, null: false
     t.datetime "notification_timestamp", null: false
     t.datetime "created_at", precision: 6, null: false
