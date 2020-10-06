@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_010305) do
+ActiveRecord::Schema.define(version: 2020_10_06_135119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 2020_09_03_010305) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "name_unique_idx", unique: true
+  end
+
+  create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "message", limit: 4096, null: false
+    t.datetime "notification_timestamp", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notification_timestamp"], name: "index_notifications_on_notification_timestamp"
   end
 
   create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -157,6 +166,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_010305) do
 
   add_foreign_key "daily_time_series_events", "stocks"
   add_foreign_key "intraday_time_series_events", "stocks"
+  add_foreign_key "notifications", "users"
   add_foreign_key "orders", "user_stocks"
   add_foreign_key "relative_strength_index_analytics", "stocks"
   add_foreign_key "simple_moving_average_analytics", "stocks"
