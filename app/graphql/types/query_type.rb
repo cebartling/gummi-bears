@@ -99,5 +99,15 @@ module Types
       context.matches
     end
 
+    field :notifications_by_user_id, [NotificationType],
+          null: true,
+          description: 'Find notifications associated with a user' do
+      argument :user_id, ID, required: true
+    end
+
+    def notifications_by_user_id(user_id:)
+      Notification.where(user_id: user_id).order(:notification_timestamp)
+    end
+
   end
 end
