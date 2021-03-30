@@ -25,6 +25,7 @@ gem 'aws-sdk-s3', require: false
 gem 'jwt'
 gem 'httparty'
 gem 'delayed_job_active_record'
+gem 'google-cloud-firestore'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
