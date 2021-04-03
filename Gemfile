@@ -55,6 +55,8 @@ group :development, :test do
   #   gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master' # Previously '4-0-dev' or '4-0-maintenance' branch
   # end
   gem 'capybara'
+  gem 'debase', '~> 0.2.4.1'
+  gem 'ruby-debug-ide', '~> 0.7.2'
 end
 
 group :test do
