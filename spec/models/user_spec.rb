@@ -2,10 +2,11 @@
 #
 # Table name: users
 #
-# *id*::         <tt>uuid, not null, primary key</tt>
-# *username*::   <tt>string(255), indexed</tt>
-# *created_at*:: <tt>datetime, not null</tt>
-# *updated_at*:: <tt>datetime, not null</tt>
+# *id*::           <tt>uuid, not null, primary key</tt>
+# *display_name*:: <tt>string(255), default("No display name provided"), not null</tt>
+# *username*::     <tt>string(255), indexed</tt>
+# *created_at*::   <tt>datetime, not null</tt>
+# *updated_at*::   <tt>datetime, not null</tt>
 #
 # Indexes
 #

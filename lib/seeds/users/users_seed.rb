@@ -12,8 +12,7 @@ module Seeds
           found = User.find_by_username(row['username'])
           unless found
             new_user = User.create!({
-                                      first_name: row['first_name'],
-                                      last_name: row['last_name'],
+                                      display_name: row['display_name'],
                                       username: row['username']
                                     })
             puts "Created new user: #{new_user.username}"
