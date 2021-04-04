@@ -7,12 +7,16 @@ class BaseController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_token do |token, _options|
-      user_info = verify_token(token)
+      users_info = verify_token(token)
 
       user = nil
-      if user_info['users'].length > 0
-        email = user_info['users'][0]['email']
+      if users_info['users'].length > 0
+        user_info = users_info['users'][0]
+        email = user_info['email']
         user = User.find_by(username: email)
+        if user.nil?
+          user = create_user(user_info)
+        end
       end
 
       user
@@ -21,6 +25,15 @@ class BaseController < ApplicationController
 
   def current_user
     @current_user ||= authenticate
+  end
+
+  private
+
+  def create_user(user_info)
+    User.create! do |u|
+      u.display_name = user_info['displayName']
+      u.username = user_info['email']
+    end
   end
 
   def verify_token(token)
